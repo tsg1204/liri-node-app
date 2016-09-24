@@ -36,4 +36,20 @@ Album: Suicide Squad: The Album
 Song Name: Flyerthanshe
 Spotify Preview Link: https://open.spotify.com/track/3gCInuWVhMlkUwVyhBVLT0
 Album: Undefined
+=================================================================Artist: Backstreet Boys
+Song Name: I Want It That Way
+Spotify Preview Link: https://open.spotify.com/track/6e40mgJiCid5HRAGrbpGA6
+Album: The Hits--Chapter One
+=================================================================Artist: Lil Wayne
+Song Name: Sucker For Pain (with Wiz Khalifa, Imagine Dragons, Logic & Ty Dolla $ign feat. X Ambassadors)
+Spotify Preview Link: https://open.spotify.com/track/7qUJQSNX9QNf46CC6FgH66
+Album: Suicide Squad: The Album
+=================================================================Artist: Lil Wayne
+Song Name: Sucker For Pain (with Wiz Khalifa, Imagine Dragons, Logic & Ty Dolla $ign feat. X Ambassadors)
+Spotify Preview Link: https://open.spotify.com/track/7qUJQSNX9QNf46CC6FgH66
+Album: Suicide Squad: The Album
+=================================================================Artist: Backstreet Boys
+Song Name: I Want It That Way
+Spotify Preview Link: https://open.spotify.com/track/6e40mgJiCid5HRAGrbpGA6
+Album: The Hits--Chapter One
 =================================================================

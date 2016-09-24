@@ -3,6 +3,7 @@ var fs = require('fs');
 //request to get move info from OMDB API
 var request = require('request');
 //twitter
+var keys = require('./keys.js');
 var Twitter = require('twitter');
 //var params = {count: 20};
 //spotify
@@ -12,36 +13,17 @@ var action = process.argv[2];
 var value = process.argv[3];
 var nodeArgs = process.argv;
 
-// We will then create a switch-case statement (if-then would also work).
-// The switch-case will direct which function gets run.
-switch(action){
-    case 'my-tweets':
-        getTweets();
-    break;
-
-    case 'spotify-this-song':
-        getSong();
-    break;
-
-    case 'movie-this':
-        getMovie();
-    break;
-
-    case 'do-what-it-says':
-        getRandom();
-    break;
-}
 
 //twitter 
 function getTweets() {
 	var client = new Twitter({
-	  consumer_key: '',
-	  consumer_secret: '',
-	  access_token_key: '',
-	  access_token_secret: ''
+		consumer_key: keys.twitterKeys.consumer_key,
+		consumer_secret: keys.twitterKeys.consumer_secret,
+		access_token_key: keys.twitterKeys.access_token_key,
+		access_token_secret: keys.twitterKeys.access_token_secret
 	});
 	 
-	var params = {screen_name: 'nodejs'};
+	var params = {screen_name: 'nodejs', count: 20};
 	client.get('statuses/user_timeline', params, function(error, tweets, response) {
 	if (!error) {
 		for (var i = 0; i < tweets.length; i++) {
@@ -80,38 +62,32 @@ function getSong() {
 		});
 	}
 	else {
-		//console.log(queryInput);
+		//do {
+			console.log(queryInput);
 
-		spotify.search({ type: 'track', query: queryInput }, function(err, data) {
-			if ( err ) {
-				console.log('Error occurred: ' + err);
-				return;
-			}
-			tempName = data.tracks.items[0].artists[0].name;
-		});	
-
-		console.log("Artist: " + tempName);
-
-		do {
 			spotify.search({ type: 'track', query: queryInput }, function(err, data) {
 				if ( err ) {
 					console.log('Error occurred: ' + err);
 					return;
 				}
 				tempName = data.tracks.items[0].artists[0].name;
-			});			
 
-		} while(tempName !== "Ace of Base");
+				console.log(tempName);
 
-		console.log("Artist: " + data.tracks.items[0].artists[0].name);
-		console.log("Song Name: " + data.tracks.items[0].name);
-		console.log("Spotify Preview Link: " + data.tracks.items[0].external_urls.spotify);
-		console.log("Album: " + data.tracks.items[0].album.name);
-		fs.appendFile('log.txt', "Artist: " + data.tracks.items[0].artists[0].name + "\n" 
-						+ "Song Name: " + data.tracks.items[0].name + "\n" 
-						+ "Spotify Preview Link: " + data.tracks.items[0].external_urls.spotify + "\n" 
-						+ "Album: " + data.tracks.items[0].album.name  + "\n" 
-						+ "=================================================================");
+				if (tempName === "Ace of Base") {
+					console.log("Artist: " + data.tracks.items[0].artists[0].name);
+					console.log("Song Name: " + data.tracks.items[0].name);
+					console.log("Spotify Preview Link: " + data.tracks.items[0].external_urls.spotify);
+					console.log("Album: " + data.tracks.items[0].album.name);
+					fs.appendFile('log.txt', "Artist: " + data.tracks.items[0].artists[0].name + "\n" 
+							+ "Song Name: " + data.tracks.items[0].name + "\n" 
+							+ "Spotify Preview Link: " + data.tracks.items[0].external_urls.spotify + "\n" 
+							+ "Album: " + data.tracks.items[0].album.name  + "\n" 
+							+ "=================================================================");
+				}
+			});
+		//} while(tempName !== "Ace of Base");
+
 	}
 
 }
@@ -240,4 +216,23 @@ function getRandom() {
 			}
 		}
 	});
+}
+
+// The switch-case will direct which function gets run.
+switch(action){
+    case 'my-tweets':
+        getTweets();
+    break;
+
+    case 'spotify-this-song':
+        getSong();
+    break;
+
+    case 'movie-this':
+        getMovie();
+    break;
+
+    case 'do-what-it-says':
+        getRandom();
+    break;
 }
